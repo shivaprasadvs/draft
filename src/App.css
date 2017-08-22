@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+h2 {
+  margin-bottom: 30px;
+  color: #444;
+}
+
+body{
+  font-family: 'Lato', sans-serif;
+
+}
+
+.control-label{
+  margin-top: 10px;
+  font-weight:200 !important;
+  color:#2B3856;
+}
+
+.btn{
+  margin-top:20px;
+}
+  
+
