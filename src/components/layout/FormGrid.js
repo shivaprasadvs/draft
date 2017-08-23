@@ -5,7 +5,7 @@ import { newPlayer } from '../../actions/playerAction';
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 import playerReducer from '../../reducers/playerReducer';
 import logger from 'redux-logger';
-
+import axios from 'axios';
 import { reducer as formReducer } from 'redux-form';
 
 const rootReducer = combineReducers({
@@ -24,11 +24,11 @@ export const store = createStore(rootReducer, middleware)
 
 class FormGrid extends Component {
   submit = (values) => {
-    
-        store.dispatch(newPlayer(
-          values
-        ))
-      }
+    axios.post('./add-player', (newPlayer(values)))
+    .then((response)=>(console.log(response)) )
+    .catch((error)=>(console.log(error)) )
+
+      };
   render() {
     return (
      
