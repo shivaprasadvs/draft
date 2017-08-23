@@ -43,7 +43,7 @@ let DraftForm = props => {
 
       <Field
         label="Speciality Role"
-        name="playerRole"
+        name="specialityRole"
         component={FormSelectInput}
       //options={roleOptions}
 
@@ -57,7 +57,7 @@ let DraftForm = props => {
 
       <Field
         label="Batting Position"
-        name="playerBattingPosition"
+        name="battingPosition"
         component={FormSelectInput}
       >
         <option value=""></option>
@@ -69,7 +69,7 @@ let DraftForm = props => {
 
       <Field
         label="Batting Style"
-        name="playerBattingStyle"
+        name="battingStyle"
         component={FormSelectInput}
       >
         <option value=""></option>
@@ -79,7 +79,7 @@ let DraftForm = props => {
 
       <Field
         label="Bowling Style"
-        name="playerBowlingStyle"
+        name="bowlingStyle"
         component={FormSelectInput}
       >
         <optgroup>
@@ -104,12 +104,12 @@ let DraftForm = props => {
 
       <Field
         label="Are you Interested in Captaincy?"
-        name="playerCaptaincyInterest"
+        name="interestInCaptaincy"
         component={FormSelectInput}
       >
 <option />
           <option value="yes">Yes</option>
-          <option value="may">Maybe</option>
+          <option value="maybe">Maybe</option>
           <option value="no">No</option>
 
 

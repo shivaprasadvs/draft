@@ -23,8 +23,10 @@ export const store = createStore(rootReducer, middleware)
 
 
 class FormGrid extends Component {
-  submit = (values) => {
-    axios.post('./add-player', (newPlayer(values)))
+ submit = (values) => {
+    store.dispatch(newPlayer(values));
+    console.log(store.getState().player);
+    axios.post('./add-player', store.getState().player)
     .then((response)=>(console.log(response)) )
     .catch((error)=>(console.log(error)) )
 
