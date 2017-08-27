@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap';
+import { LinkContainer} from 'react-router-bootstrap';
+import {Link} from 'react-router-dom';
 
 class MenuNavbar extends Component {
   render() {
@@ -8,7 +9,7 @@ class MenuNavbar extends Component {
     <Navbar inverse collapseOnSelect>
       <Navbar.Header>
         <Navbar.Brand>
-          <a href="#">Draft</a>
+          <Link to="/">Draft</Link>
         </Navbar.Brand>
         <Navbar.Toggle />
       </Navbar.Header>
@@ -16,6 +17,11 @@ class MenuNavbar extends Component {
         <Nav>
           <LinkContainer to="/register">
           <NavItem eventKey={1} >Register</NavItem>
+          </LinkContainer>
+        </Nav>
+        <Nav>
+          <LinkContainer to="/players">
+          <NavItem eventKey={2} >Players</NavItem>
           </LinkContainer>
         </Nav>
       </Navbar.Collapse>

@@ -5,12 +5,13 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormTextInput from './FormTextInput';
 import FormSelectInput from './FormSelectInput';
+import {store} from '../../index.js';
 
 
 let DraftForm = props => {
   const { handleSubmit } = props
   return (
-    <form onSubmit={handleSubmit}>
+    <form  onSubmit={handleSubmit}>
       <Field
         name="firstName"
         type="text"
@@ -123,18 +124,22 @@ let DraftForm = props => {
       <center><Button bsClass="btn" bsStyle="primary" type="submit">
         Submit
       </Button></center>
+      <br/>
+      <br/>
     </form>
   );
 
 }
 
-function mapStateToProps(state) {
-  return { state };
-}
-
 DraftForm = reduxForm({
   // a unique name for the form
-  form: 'register'
+  form: 'register',
+  enableReinitialize : true
 })(DraftForm)
 
-export default connect(mapStateToProps)(DraftForm);
+export default connect(state => ({
+  initialValues: { firstName : store.getState().login.first_name,
+  lastName: store.getState().login.last_name,
+  email: store.getState().login.email
+}
+}))(DraftForm);
