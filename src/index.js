@@ -8,6 +8,8 @@ import { reducer as formReducer } from 'redux-form';
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 import playerReducer from './reducers/playerReducer';
 import loginReducer from './reducers/loginReducer';
+import allPlayersReducer from './reducers/allPlayersReducer';
+import filteredPlayersReducer from './reducers/filteredPlayersReducer';
 import LoginPage from './components/layout/LoginPage';
 import logger from 'redux-logger';
 import {
@@ -15,17 +17,20 @@ import {
   Route
 } from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
     // ...your other reducers here
     // you have to pass formReducer under 'form' key,
     login: loginReducer,
     player: playerReducer,
-    form: formReducer
+    form: formReducer,
+    players: allPlayersReducer,
+    filtered: filteredPlayersReducer
   })
   
   const customHistory = createBrowserHistory()
-  const middleware = applyMiddleware(logger)
+  const middleware = applyMiddleware(thunk, logger)
   export const store = createStore(rootReducer, middleware)
 
   const isAuthorized = () => {

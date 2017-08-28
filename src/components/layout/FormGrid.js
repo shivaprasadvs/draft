@@ -9,7 +9,6 @@ import axios from 'axios';
 class FormGrid extends Component {
  submit = (values) => {
     store.dispatch(newPlayer(values));
-    console.log(store.getState().player);
     axios.post('./add-player', store.getState().player)
     .then((response)=>(console.log(response)) )
     .catch((error)=>(console.log(error)) )
@@ -23,7 +22,7 @@ class FormGrid extends Component {
           <Row className="show-grid">
             <Col xs={1} md={3} />
             <Col xs={10} md={6} >
-              <h2>Registration</h2>
+              <h1>Registration</h1>
               <DraftForm onSubmit={this.submit} />
 
             </Col>

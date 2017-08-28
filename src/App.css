@@ -38,11 +38,45 @@ body{
 .control-label{
   margin-top: 10px;
   font-weight:200 !important;
-  color:#2B3856;
+  color:#452501	;
 }
 
 .btn{
   margin-top:20px;
+}
+
+.modal-player{
+  padding-top: 40px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.modal-detail{
+  font-weight:700;
+  color: #333;
+}
+
+.modal-label{
+  font-weight:200;
+  color: #888;
+}
+
+.navbar-inverse {
+  background-color: rgb(20,	4,	6)	;
+  border-color: #080808;
+  margin-bottom: 0px;
+}
+
+.jumbotron{
+  background-image: url('./images/background.jpg') !important;
+  background-size: cover;
+  padding-bottom:350px;
+}
+
+h1 {
+  padding-top: 20px;
+  padding-bottom:20px;
 }
   
 

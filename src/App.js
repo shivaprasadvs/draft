@@ -10,11 +10,6 @@ import createBrowserHistory from 'history/createBrowserHistory';
 
 const customHistory = createBrowserHistory()
 
-const Child = ({ match }) => (
-  <div>
-    <h3>ID: {match.params.player}</h3>
-  </div>
-)
 class App extends Component {
 
   render() {

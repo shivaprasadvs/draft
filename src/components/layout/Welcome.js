@@ -1,24 +1,29 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Button} from 'react-bootstrap';
+import {Grid, Row, Col, Button, Jumbotron} from 'react-bootstrap';
 import {NavLink} from 'react-router-dom';
 class Welcome extends Component {
     render() {
         return (
-            <Grid>
 
-                <Row className="show-grid">
-                    <Col xs={1} md={3}/>
-                    <Col xs={10} md={6}>
-                        <h2>Midwest Cricket League Draft 2017</h2>
+            <Jumbotron>
+                <Grid>
+                    <Row  className="show-grid">
+                        <Col xs={1}></Col>
+                        <Col xs={9}>
 
-                        <NavLink to="/register" activeClassName="selected">
-                            <Button bsStyle="primary" bsSize="large">Register</Button>
-                        </NavLink>
-                    </Col>
-                    <Col xs={1} md={3}/>
+                            <h1>Major Cricket League </h1>
+                            <h2>St. Louis - Draft 2017</h2>
 
-                </Row>
-            </Grid>
+                            <p>
+                                <NavLink to="/register" activeClassName="selected">
+                                    <Button bsStyle="danger" bsSize="large">Register</Button>
+                                </NavLink>
+                            </p>
+                        </Col>
+                    </Row>
+                </Grid>
+            </Jumbotron>
+
         );
     }
 }
