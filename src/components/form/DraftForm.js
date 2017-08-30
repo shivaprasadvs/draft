@@ -5,11 +5,46 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import FormTextInput from './FormTextInput';
 import FormSelectInput from './FormSelectInput';
-import {store} from '../../index.js';
 
+const validate = values => {
+  const errors = {}
+  if (!values.firstName) {
+    errors.firstName = 'Required'
+  } 
+  if (!values.lastName) {
+    errors.lastName = 'Required'
+  } 
+  if (!values.email) {
+    errors.email = 'Required'
+  } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+    errors.email = 'Invalid email address'
+  }
+  if (!values.dateOfBirth) {
+    errors.dateOfBirth = 'Required'
+  } 
+  if (!values.specialityRole) {
+    errors.specialityRole = 'Required'
+  } 
+  if (!values.dateOfBirth) {
+    errors.dateOfBirth = 'Required'
+  } 
+  if (!values.battingPosition) {
+    errors.battingPosition = 'Required'
+  } 
+  if (!values.battingStyle) {
+    errors.battingStyle = 'Required'
+  } 
+  if (!values.bowlingStyle) {
+    errors.bowlingStyle = 'Required'
+  } 
+  if (!values.interestInCaptaincy) {
+    errors.interestInCaptaincy = 'Required'
+  } 
+  return errors
+}
 
 let DraftForm = props => {
-  const { handleSubmit } = props
+  const { handleSubmit, submitting } = props
   return (
     <form  onSubmit={handleSubmit}>
       <Field
@@ -121,7 +156,7 @@ let DraftForm = props => {
 
 
 
-      <center><Button bsClass="btn" bsStyle="primary" type="submit">
+      <center><Button bsClass="btn" bsStyle="primary" type="submit" disabled={submitting}>
         Submit
       </Button></center>
       <br/>
@@ -134,12 +169,13 @@ let DraftForm = props => {
 DraftForm = reduxForm({
   // a unique name for the form
   form: 'register',
-  enableReinitialize : true
+  enableReinitialize : true,
+  validate
 })(DraftForm)
 
 export default connect(state => ({
-  initialValues: { firstName : store.getState().login.first_name,
-  lastName: store.getState().login.last_name,
-  email: store.getState().login.email
+  initialValues: { firstName : state.login.first_name,
+  lastName: state.login.last_name,
+  email: state.login.email
 }
 }))(DraftForm);

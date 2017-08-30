@@ -5,7 +5,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import { Provider } from 'react-redux';
 import { reducer as formReducer } from 'redux-form';
-import { applyMiddleware, createStore, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers, compose } from 'redux';
 import playerReducer from './reducers/playerReducer';
 import loginReducer from './reducers/loginReducer';
 import allPlayersReducer from './reducers/allPlayersReducer';
@@ -30,11 +30,11 @@ const rootReducer = combineReducers({
   })
   
   const customHistory = createBrowserHistory()
-  const middleware = applyMiddleware(thunk, logger)
+  const middleware = compose(applyMiddleware(thunk, logger))
   export const store = createStore(rootReducer, middleware)
 
   const isAuthorized = () => {
-      if(store.getState().login.length > 0) {console.log("Authorized by " + store.getState().login.auth_service)}
+      if(store.getState().login.length > 0 && store.getState().login.auth_id !== "") {console.log("Authorized by " + store.getState().login.auth_service)}
         else customHistory.push("/login")
   }
 

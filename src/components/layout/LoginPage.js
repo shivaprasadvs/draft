@@ -3,15 +3,12 @@ import FacebookLogin from 'react-facebook-login';
 import {store} from '../../index.js';
 import {facebookLogin, googleLogin} from '../../actions/loginAction';
 import GoogleLogin from 'react-google-login';
-import axios from 'axios';
-import { allPlayers } from '../../actions/allPlayersAction';
 
 class LoginPage extends Component {
 
   responseFacebook = (response) => {
     store.dispatch(facebookLogin(response));
     console.log(response);
-
     this
       .props
       .history
@@ -21,15 +18,7 @@ class LoginPage extends Component {
   responseGoogle = (response) => {
     console.log(response);
     store.dispatch(googleLogin(response));
-    axios
-      .get('/all-players')
-      .then(function (response) {
-
-        store.dispatch(allPlayers(response.data));
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    
     this
       .props
       .history
@@ -47,7 +36,10 @@ class LoginPage extends Component {
           autoLoad={true}
           fields="first_name,last_name,email,picture"
           scope="public_profile"
-          callback={this.responseFacebook}/></center>
+          callback={this.responseFacebook}
+          cssClass="my-facebook-button-class"
+    icon="fa-facebook"/></center>
+    
         <br/>
         <br/>
         <br/>

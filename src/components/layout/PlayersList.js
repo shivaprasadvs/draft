@@ -1,22 +1,18 @@
-import React, { Component } from 'react';
-import {
-    Table,
-    ListGroup,
-    ListGroupItem,Image
-} from 'react-bootstrap';
+import React, {Component} from 'react';
+import {Table, ListGroup, ListGroupItem, Image, Panel} from 'react-bootstrap';
 import {ModalContainer, ModalRoute, ModalLink} from 'react-router-modal';
 import * as _ from 'lodash';
 import {store} from '../../index.js';
 
 const Player = ({match}) => {
-    const player = _.find(store.getState().players.allPlayers, {_id: match.params.id})
+    const player = _.find(store.getState().players, {_id: match.params.id})
 
     if (player) {
         return (
 
             <div className="modal-player">
                 <center><Image
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSswvUaEId6l3r8Y8oPpcqKNen-XaOXgdd2mAgQxjHntCL-nrEcg"/>
+                    src={player.picture}/>
                 </center>
                 <br/>
                 <Table condensed hover>
@@ -64,41 +60,58 @@ const Player = ({match}) => {
 
 }
 
-const days_between = (date2) => {
-    
-        // The number of milliseconds in one day
-        const ONE_DAY = 1000 * 60 * 60 * 24
-    
-        // Convert both dates to milliseconds
-        const date1_ms = new Date().getTime()
-        const date2_ms = new Date(date2).getTime()
-    
-        // Calculate the difference in milliseconds
-        const difference_ms = Math.abs(date1_ms - date2_ms)
-    
-        const difference_days = Math.floor(difference_ms / ONE_DAY)
-    
-        const difference_years = Math.floor(difference_days / 365)
-        // Convert back to days and return
-        return difference_years
-    
-    }
+export const days_between = (date2) => {
+
+    // The number of milliseconds in one day
+    const ONE_DAY = 1000 * 60 * 60 * 24
+
+    // Convert both dates to milliseconds
+    const date1_ms = new Date().getTime()
+    const date2_ms = new Date(date2).getTime()
+
+    // Calculate the difference in milliseconds
+    const difference_ms = Math.abs(date1_ms - date2_ms)
+
+    const difference_days = Math.floor(difference_ms / ONE_DAY)
+
+    const difference_years = Math.floor(difference_days / 365)
+    // Convert back to days and return
+    return difference_years
+
+}
 
 class PlayersList extends Component {
-    
+
     render() {
         return (
-            <ListGroup>
-                                    
-                                    {store.getState().filtered.data
-                                        .map(player => <ListGroupItem key={player._id}>
-                                            <ModalLink  path={`/players/${player._id}`}>
-                                                {player.firstName} {player.lastName}
-                                            </ModalLink>
-                                        </ListGroupItem>)}
-                                        <ModalContainer/>
-                                    <ModalRoute path='/players/:id' component={Player} parentPath='/players'/>
-                                </ListGroup>
+            <Panel header={< h3 > {
+                this.props.title
+            } </h3>}>
+                <ListGroup>
+
+                    {store
+                        .getState()
+                        .filtered
+                        .data
+                        .map(player => <ListGroupItem key={player._id}>
+                            <ModalLink path={`/players/${player._id}`}>
+                                {player.firstName} {player.lastName}
+                            </ModalLink>
+                            <span className="sub-label">  &nbsp;&nbsp;{(() => {
+                                    if (this.props.field === 'Batting') 
+                                        return player.battingStyle
+                                    else if (this.props.field === 'Role') 
+                                        return days_between(player.dateOfBirth) + " years"
+                                    else if (this.props.field === 'Bowling')
+                                    return player.bowlingStyle.replace(/Right-arm |Left-arm /gi, "")
+                                    else if (this.props.field === 'Captain')
+                                    return (player.specialityRole + " (" + days_between(player.dateOfBirth) + " years)")
+                                })()}</span>
+                        </ListGroupItem>)}
+                    <ModalContainer/>
+                    <ModalRoute path='/players/:id' component={Player} parentPath='/players'/>
+                </ListGroup>
+            </Panel>
         );
     }
 }

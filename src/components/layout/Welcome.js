@@ -11,9 +11,8 @@ class Welcome extends Component {
                         <Col xs={1}></Col>
                         <Col xs={9}>
 
-                            <h1>Major Cricket League </h1>
-                            <h2>St. Louis - Draft 2017</h2>
-
+                            <h1 className="jumbo-h1">Major Cricket League - Draft</h1> 
+                            <p>St. Louis 2017</p>
                             <p>
                                 <NavLink to="/register" activeClassName="selected">
                                     <Button bsStyle="danger" bsSize="large">Register</Button>

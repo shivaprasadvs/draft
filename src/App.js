@@ -4,6 +4,7 @@ import MenuNavbar from './components/layout/MenuNavbar';
 import FormGrid from './components/layout/FormGrid';
 import Players from './components/layout/Players';
 import Welcome from './components/layout/Welcome';
+import Footer from './components/layout/Footer';
 import {Route, Router,Switch} from 'react-router-dom';
 import createBrowserHistory from 'history/createBrowserHistory';
 
@@ -25,6 +26,7 @@ class App extends Component {
           <Route path="/players" component={Players} />
           <Route path="/" component={Welcome}/>
           </Switch>
+          <Footer/>
        </div>
       </Router>
     

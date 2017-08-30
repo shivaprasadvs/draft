@@ -29,9 +29,13 @@ h2 {
   margin-bottom: 30px;
   color: #444;
 }
-
+html {
+  position: relative;
+  min-height: 100%;
+}
 body{
   font-family: 'Lato', sans-serif;
+  margin-bottom: 25px;
 
 }
 
@@ -74,9 +78,41 @@ body{
   padding-bottom:350px;
 }
 
+.jumbo-h1 {
+  padding-bottom:0px !important;
+}
+
 h1 {
   padding-top: 20px;
   padding-bottom:20px;
 }
+
+.sub-label {
+  font-size:10pt;
+color: #888;
+}
+
+.form-group > span {
+  color: red;
+  font-size:13px;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 30px;
+
+  background-color: rgb(20,	4,	6)	;
+}
+
+.footer-text {
+
+  color: #888
+}
+
+
+@media (max-width:768px){ .footer{position:absolute;width:100%;} }
   
 

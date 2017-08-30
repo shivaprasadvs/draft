@@ -1,4 +1,4 @@
-export function filteredPlayersAction(users) {
+export function filterPlayers(users) {
     return {
         type: "FILTERED_PLAYERS",
         payload: users
