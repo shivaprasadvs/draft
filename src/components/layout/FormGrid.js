@@ -21,7 +21,7 @@ componentDidMount(){
     picture: store.getState().login.picture}
     const postData = _.extend(loginData, values)
     store.dispatch(newPlayer(postData));
-    axios.post('./add-player', store.getState().player)
+    axios.post('http://draft-backend-env.ahpbzkqxts.us-east-2.elasticbeanstalk.com/add-player', store.getState().player)
     .then((response)=>{
       this
       .props
@@ -49,7 +49,7 @@ componentDidMount(){
             <Col xs={10} md={6} >
               <h1>Registration</h1>
               {!this.checkIfAlreadySubmitted() && <DraftForm onSubmit={this.submit} />}
-{this.checkIfAlreadySubmitted() && <RegisterDetails player={this.matchingData()}/>}
+{this.checkIfAlreadySubmitted() && <RegisterDetails player={this.matchingData()} history={this.props.history}/>}
             </Col>
             <Col xs={1} md={3} />
 

@@ -5,7 +5,7 @@ import {
     Row,
     Col,
     Tab,
-    Tabs
+    Tabs,Well
 } from 'react-bootstrap';
 import PlayersList from './PlayersList'
 import 'react-router-modal/css/react-router-modal.css';
@@ -90,20 +90,20 @@ class Players extends Component {
                             <Tab eventKey={1} title="By Role">
                             <center><h3>Speciality Role</h3><RadialChart
                             animation={true}
-                            data={this.props.chartRoleData}
+                            data={_.filter(this.props.chartRoleData, (value)=>{return value.angle > 0} )}
                             width={350}
                             height={350}
                             showLabels={true}
                             innerRadius={100}
                             onValueClick =  {(value) => this.mapClickRole(value)}
 
-                            radius={140}/></center> 
+                            radius={140}/></center>
                         
                     </Tab>
                             <Tab eventKey={2} title="By Batting Position">
                             <center><h3>Batting Position</h3><RadialChart
                                     animation={true}
-                                    data={this.props.chartBattingData}
+                                    data={_.filter(this.props.chartBattingData, (value)=>{return value.angle > 0} )}
                                     width={350}
                                     height={350}
                                     showLabels={true}
@@ -115,10 +115,11 @@ class Players extends Component {
                             </Tab>
                             <Tab eventKey={3} title="By Bowling Style">  <center><h3>Bowling Style</h3><RadialChart
                                     animation={true}
-                                    data={this.props.chartBowlingData}
+                                    data={_.filter(this.props.chartBowlingData, (value)=>{return value.angle > 0} )}
                                     width={350}
                                     height={350}
                                     showLabels={true}
+                                    labelsAboveChildren={true}
                                     innerRadius={100}
                                     onValueClick =  {(value) => this.mapClickBowlingStyles(value)}
                                     radius={140}/> </center> 
@@ -126,7 +127,7 @@ class Players extends Component {
                                    </Tab>
                                    <Tab eventKey={4} title="By Captaincy">  <center><h3>Interest in Captaincy</h3><RadialChart
                                     animation={true}
-                                    data={this.props.chartCaptaincyData}
+                                    data={_.filter(this.props.chartCaptaincyData, (value)=>{return value.angle > 0} )}
                                     width={350}
                                     height={350}
                                     showLabels={true}
@@ -136,7 +137,8 @@ class Players extends Component {
                           
                                    </Tab>
                         </Tabs>
-                        <PlayersList title={this.props.filtered.title} field={this.props.filtered.filterField}/>
+                        {this.props.filtered.data.length > 0 && <PlayersList title={this.props.filtered.title} field={this.props.filtered.filterField}/>}
+                        {this.props.filtered.data.length <= 0 && <Well className="information">Click on the Donut for more details</Well>}
                     </Col>
                     <Col xs={1}/>
                 </Row>

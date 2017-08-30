@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
-import {Image, Table} from 'react-bootstrap';
+import {Image, Table, Button} from 'react-bootstrap';
 import {days_between} from '../layout/PlayersList';
+import axios from 'axios';
 
 class RegisterDetails extends Component {
+
+    delete = (id) => {
+        axios.post('http://draft-backend-env.ahpbzkqxts.us-east-2.elasticbeanstalk.com/delete-player', {_id: id})
+        .then((response)=>{
+        window.alert("Your Data is now deleted")
+        this.props.history.push('/players')
+         })
+        .catch((error)=>(window.alert(error)) )
+        
+    }
     render() {
         return (
             <div>
@@ -43,6 +54,9 @@ class RegisterDetails extends Component {
 
             </tbody>
         </Table>
+        <center><Button bsClass="btn" bsStyle="primary" onClick={() => this.delete(this.props.player._id)}>
+        Delete
+      </Button></center>
         </div>
         )
     }

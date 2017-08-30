@@ -1,29 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Lato');
 
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
-}
-
-.App-intro {
-  font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
 
 h2 {
   margin-bottom: 30px;
@@ -72,11 +49,20 @@ body{
   margin-bottom: 0px;
 }
 
-.jumbotron{
+.jumbo-one{
   background-image: url('./images/background.jpg') !important;
   background-size: cover;
-  padding-bottom:350px;
+  padding-bottom:500px;
+  margin-bottom: 0px;
+  
 }
+
+.jumbo-two{
+  background: #f46b45;  /* fallback for old browsers */
+  background: -webkit-linear-gradient(to right, #eea849, #f46b45);  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #eea849, #f46b45); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  padding-bottom:100px;
+     }
 
 .jumbo-h1 {
   padding-bottom:0px !important;
@@ -111,6 +97,12 @@ color: #888;
 
   color: #888
 }
+
+.information{
+  color: green
+}
+
+
 
 
 @media (max-width:768px){ .footer{position:absolute;width:100%;} }
